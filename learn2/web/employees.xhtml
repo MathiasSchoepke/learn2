@@ -16,7 +16,14 @@
 	<ui:composition template="/layouts/commenLayout.xhtml">
 		<ui:define name="content">
 
-			<h2>index</h2>
+			<h2>Employees</h2>
+			<p:dataTable id="questionTable" var="entry" value="#{employeesBean.employees}">
+				<p:column headerText="Name">
+					<h:link value="#{entry.name}" outcome="employee">
+						<f:param name="id" value="#{entry.seoUrl}#{entry.id}" />
+					</h:link>
+				</p:column>
+			</p:dataTable>
 
 		</ui:define>
 	</ui:composition>

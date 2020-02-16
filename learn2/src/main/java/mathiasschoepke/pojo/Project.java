@@ -1,5 +1,7 @@
 package mathiasschoepke.pojo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +14,8 @@ import lombok.Setter;
 @Table(name = "project")
 @Getter
 @Setter
-public class Project {
+public class Project implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "projectId")

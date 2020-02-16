@@ -1,6 +1,7 @@
 package mathiasschoepke.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -36,5 +37,10 @@ public class EmployeeBean implements Serializable {
 		if (stud != null) {
 			System.out.println(stud.getName() + " " + stud.getSeoUrl());
 		}
+	}
+
+	public List<Employee> getAll() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		return session.createQuery("SELECT a FROM Employee a", Employee.class).getResultList();
 	}
 }

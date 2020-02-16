@@ -9,16 +9,21 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-<h:head>
-</h:head>
+<ui:composition>
+	<h:outputStylesheet name="css/style.css" />
+	<h:form>
+	<h:link outcome="index">
+		<h1>
+			<span>LEARN</span>ING BY DOING!
+		</h1>
+	</h:link>
+		<p:menubar>
+			<p:menuitem value="Employees"
+				outcome="employees" />
+			<p:menuitem value="Projects"
+				outcome="projects" />
+		</p:menubar>
+	</h:form>
+</ui:composition>
 
-<h:body>
-	<ui:composition template="/layouts/commenLayout.xhtml">
-		<ui:define name="content">
-
-			<h2>index</h2>
-
-		</ui:define>
-	</ui:composition>
-</h:body>
 </html>

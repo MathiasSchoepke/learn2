@@ -13,12 +13,22 @@
 </h:head>
 
 <h:body>
-	<ui:composition template="/layouts/commenLayout.xhtml">
-		<ui:define name="content">
-
-			<h2>index</h2>
-
-		</ui:define>
-	</ui:composition>
+	<div id="page">
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/layouts/commenHeader.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+		<div id="content">
+			<ui:insert name="content">
+				<ui:include src="/layouts/commenContent.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/layouts/commenFooter.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	</div>
 </h:body>
 </html>
