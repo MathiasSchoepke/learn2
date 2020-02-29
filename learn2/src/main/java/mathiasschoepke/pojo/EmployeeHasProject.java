@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "employeeHasProject")
+@Table(name = "employee_has_project")
 @Getter
 @Setter
 public class EmployeeHasProject implements Serializable {
@@ -25,15 +25,15 @@ public class EmployeeHasProject implements Serializable {
 	@Column(name = "projectId")
 	private int projectId;
 
-	@Column(name = "skillId")
-	private int skillId;
+	@Column(name = "roleId")
+	private int roleId;
 
 	public EmployeeHasProject() {
 	}
 
-	public EmployeeHasProject(int employeeId, int projectId, int skillId) {
+	public EmployeeHasProject(int employeeId, int projectId, int roleId) {
 		this.employeeId = employeeId;
 		this.projectId = projectId;
-		this.skillId = skillId;
+		this.roleId = roleId;
 	}
 }

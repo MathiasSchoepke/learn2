@@ -10,16 +10,16 @@ import javax.inject.Named;
 
 import lombok.Getter;
 import lombok.Setter;
-import mathiasschoepke.pojo.Employee;
-import mathiasschoepke.pojo.QEmployee;
+import mathiasschoepke.pojo.Project;
+import mathiasschoepke.pojo.QProject;
 
 @Named
 @ViewScoped
-public class EmployeesBean implements Serializable {
+public class ProjectsBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Getter
-	private List<Employee> employees;
+	private List<Project> projects;
 	
 	@Getter
 	@Setter
@@ -30,7 +30,7 @@ public class EmployeesBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		QEmployee employee = QEmployee.employee;
-		employees = sb.getQueryFactory().selectFrom(employee).fetch();
+		QProject project = QProject.project;
+		projects = sb.getQueryFactory().selectFrom(project).fetch();
 	}
 }

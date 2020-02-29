@@ -23,9 +23,8 @@ public class ConfigurationProvider extends HttpConfigurationProvider {
 				.addRule(Join.path("/").to("/index.xhtml"))
 
 				.addRule(Join.path("/employees").to("/employees.xhtml"))
-
 				.addRule(Join.path("/employees/{id}").to("/employee.xhtml"))
 
-				.addRule(Join.path("/projects").to("/projects.xhtml"));
+				.addRule(Join.path("/projects").to("/projects.xhtml")).addRule(Join.path("/projects/{id}").to("/project.xhtml"));
 	}
 }

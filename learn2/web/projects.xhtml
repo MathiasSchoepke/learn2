@@ -17,6 +17,13 @@
 		<ui:define name="content">
 
 			<h2>Projects</h2>
+			<p:dataTable id="questionTable" var="entry" value="#{projectsBean.projects}">
+				<p:column headerText="Name">
+					<h:link value="#{entry.name}" outcome="project">
+						<f:param name="id" value="#{entry.seoUrl}#{entry.id}" />
+					</h:link>
+				</p:column>
+			</p:dataTable>
 
 		</ui:define>
 	</ui:composition>

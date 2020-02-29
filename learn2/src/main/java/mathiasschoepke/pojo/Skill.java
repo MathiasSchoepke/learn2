@@ -1,10 +1,12 @@
 package mathiasschoepke.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -23,6 +25,9 @@ public class Skill implements Serializable {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@OneToMany(mappedBy = "skill")
+	private List<EmployeeRating> ratings;
 
 	public Skill() {
 	}

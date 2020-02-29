@@ -1,46 +1,34 @@
 package mathiasschoepke.bean;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import org.hibernate.Session;
-
 import lombok.Getter;
-import mathiasschoepke.pojo.Employee;
-import mathiasschoepke.util.HibernateUtil;
+import lombok.Setter;
 
 @Named
-@RequestScoped
+// @RequestScoped
+@ViewScoped
 public class EmployeeBean implements Serializable {
-	private static final long serialVersionUID = -9118480002865047109L;
+	private static final long serialVersionUID = 1L;
 
 	@Getter
-	private Employee Employee;
+	@Setter
+	private String urlId;
 
-	public void getEmployeeById(int id) {
-		Session session = null;
-		Employee stud = null;
-
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			stud = (Employee) session.get(Employee.class, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-		if (stud != null) {
-			System.out.println(stud.getName() + " " + stud.getSeoUrl());
-		}
+	@PostConstruct
+	public void init() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		urlId = params.get("id");
+		System.out.println("id: " + urlId);
 	}
 
-	public List<Employee> getAll() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		return session.createQuery("SELECT a FROM Employee a", Employee.class).getResultList();
+	public void printUrlId() {
+		System.out.println("id: " + urlId);
 	}
 }

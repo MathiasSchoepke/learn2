@@ -8,29 +8,27 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import lombok.Getter;
-import lombok.Setter;
 import mathiasschoepke.pojo.Employee;
 import mathiasschoepke.pojo.QEmployee;
 
 @Named
 @ViewScoped
-public class EmployeesBean implements Serializable {
+public class IndexBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Getter
-	private List<Employee> employees;
-	
-	@Getter
-	@Setter
-	private String urlID;
 
 	@Inject
 	SessionBean sb;
 
 	@PostConstruct
 	public void init() {
+	}
+
+	public void test() {
 		QEmployee employee = QEmployee.employee;
-		employees = sb.getQueryFactory().selectFrom(employee).fetch();
+		List<Employee> c = sb.getQueryFactory().selectFrom(employee).fetch();
+		System.out.println(c.get(0));
+		System.out.println(c.get(1));
+		System.out.println(c.get(1).getRatings());
+
 	}
 }

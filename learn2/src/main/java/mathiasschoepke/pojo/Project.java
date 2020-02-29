@@ -19,7 +19,7 @@ public class Project implements Serializable {
 
 	@Id
 	@Column(name = "projectId")
-	private int projectId;
+	private int id;
 
 	@Column(name = "seoUrl", nullable = false)
 	private String seoUrl;
@@ -33,8 +33,8 @@ public class Project implements Serializable {
 	public Project() {
 	}
 
-	public Project(int projectId, String seoUrl, String name, int teamSize) {
-		this.projectId = projectId;
+	public Project(int id, String seoUrl, String name, int teamSize) {
+		this.id = id;
 		this.seoUrl = seoUrl;
 		this.name = name;
 		this.teamSize = teamSize;
