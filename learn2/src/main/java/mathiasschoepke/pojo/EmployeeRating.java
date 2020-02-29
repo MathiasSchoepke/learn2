@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -19,6 +17,7 @@ import lombok.Setter;
 public class EmployeeRating implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// ATTRIBUTES
 	@Id
 	@Column(name = "employeeId")
 	private int employeeId;
@@ -30,14 +29,9 @@ public class EmployeeRating implements Serializable {
 	@Column(name = "rating")
 	private int rating;
 
-	@ManyToOne
-	@JoinColumn(name = "employeeId", nullable = false)
-	private Employee employee;
+	// ASSOCIATION
 
-	@ManyToOne
-	@JoinColumn(name = "skillId", nullable = false)
-	private Skill skill;
-
+	// METHODS
 	public EmployeeRating() {
 	}
 
@@ -49,6 +43,6 @@ public class EmployeeRating implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EmployeeRating [employeeId=" + employeeId + ", skillId=" + skillId + ", rating=" + rating + "]";
+		return "er[" + skillId + ":" + rating + "]";
 	}
 }

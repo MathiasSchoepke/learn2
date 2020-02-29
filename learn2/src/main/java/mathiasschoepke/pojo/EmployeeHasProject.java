@@ -17,6 +17,7 @@ import lombok.Setter;
 public class EmployeeHasProject implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// ATTRIBUTES
 	@Id
 	@Column(name = "employeeId")
 	private int employeeId;
@@ -28,6 +29,9 @@ public class EmployeeHasProject implements Serializable {
 	@Column(name = "roleId")
 	private int roleId;
 
+	// ASSOCIATION
+
+	// METHODS
 	public EmployeeHasProject() {
 	}
 
@@ -35,5 +39,10 @@ public class EmployeeHasProject implements Serializable {
 		this.employeeId = employeeId;
 		this.projectId = projectId;
 		this.roleId = roleId;
+	}
+
+	@Override
+	public String toString() {
+		return "EHP[" + projectId + ":" + roleId + "]";
 	}
 }

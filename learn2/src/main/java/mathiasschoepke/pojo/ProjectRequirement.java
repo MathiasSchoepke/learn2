@@ -17,6 +17,7 @@ import lombok.Setter;
 public class ProjectRequirement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// ATTRIBUTES
 	@Id
 	@Column(name = "projectId")
 	private int projectId;
@@ -28,6 +29,9 @@ public class ProjectRequirement implements Serializable {
 	@Column(name = "rating")
 	private int rating;
 
+	// ASSOCIATION
+
+	// METHODS
 	public ProjectRequirement() {
 	}
 
@@ -35,5 +39,10 @@ public class ProjectRequirement implements Serializable {
 		this.projectId = projectId;
 		this.skillId = skillId;
 		this.rating = rating;
+	}
+
+	@Override
+	public String toString() {
+		return "pr[" + skillId + ":" + rating + "]";
 	}
 }

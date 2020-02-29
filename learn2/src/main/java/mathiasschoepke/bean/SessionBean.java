@@ -18,13 +18,23 @@ import lombok.Getter;
 public class SessionBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	EntityManagerFactory emf;
+	@Getter
+	EntityManager em;
+
 	@Getter
 	JPAQueryFactory queryFactory;
 
 	@PostConstruct
 	public void init() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("peri");
-		EntityManager em = emf.createEntityManager();
+		emf = Persistence.createEntityManagerFactory("peri");
+		em = emf.createEntityManager();
 		queryFactory = new JPAQueryFactory(em);
+	}
+
+	public void persist(Object obj) {
+		em.getTransaction().begin();
+		em.persist(obj);
+		em.getTransaction().commit();
 	}
 }
