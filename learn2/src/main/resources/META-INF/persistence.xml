@@ -13,7 +13,7 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/learn2db?serverTimezone=UTC"/>
             <property name="hibernate.connection.username" value="mysqladminuser"/>
             <property name="hibernate.connection.password" value="1j!RY$p7Ug67"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 			<!-- update create -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             

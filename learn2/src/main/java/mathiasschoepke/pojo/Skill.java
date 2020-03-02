@@ -21,9 +21,9 @@ public class Skill implements Serializable {
 
 	// ATTRIBUTES
 	@Id
-	@Column(name = "skillId")
+	@Column(name = "skill_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -38,7 +38,7 @@ public class Skill implements Serializable {
 		this.name = name;
 	}
 
-	public Skill(int id, String name) {
+	public Skill(long id, String name) {
 		this.id = id;
 		this.name = name;
 	}

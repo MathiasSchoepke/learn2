@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
@@ -17,7 +13,17 @@
 		<ui:define name="content">
 
 			<h2>index</h2>
-			<p:commandButton value="show" action="#{indexBean.show()}" />
+			<p:commandButton value="employee" action="#{indexBean.show('employee')}" />
+			<p:commandButton value="project" action="#{indexBean.show('project')}" />
+			<p:commandButton value="skill" action="#{indexBean.show('skill')}" />
+			<p:commandButton value="role" action="#{indexBean.show('role')}" />
+			<p:commandButton value="employeeHasProject" action="#{indexBean.show('employeeHasProject')}" />
+			<p:commandButton value="employeeRating" action="#{indexBean.show('employeeRating')}" />
+			<p:commandButton value="projectRequirement" action="#{indexBean.show('projectRequirement')}" />
+			<p:commandButton value="job" action="#{indexBean.show('job')}" />
+			<p:separator />
+			<p:commandButton value="show2" action="#{indexBean.show2()}" />
+			<p:separator />
 			<p:commandButton value="fill" action="#{indexBean.fill()}" />
 
 		</ui:define>

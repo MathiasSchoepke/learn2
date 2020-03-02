@@ -1,12 +1,14 @@
 package mathiasschoepke.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -21,17 +23,25 @@ public class Employee implements Serializable {
 
 	// ATTRIBUTES
 	@Id
-	@Column(name = "employeeId")
+	@Column(name = "employee_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
-	@Column(name = "seoUrl", nullable = false)
+	@Column(name = "seo_url", nullable = false)
 	private String seoUrl;
 
 	@Column(name = "name", nullable = false)
 	private String name;
 
 	// ASSOCIATION
+	@OneToMany(mappedBy = "employee")
+	private List<Job> jobs;
+
+	// @OneToMany(mappedBy = "employee")
+	// private List<EmployeeHasProject> projects;
+
+	// @OneToMany(mappedBy = "employee")
+	// private List<EmployeeRating> ratings;
 
 	// METHODS
 	public Employee() {
@@ -50,6 +60,6 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "employee[" + id + ":" + name + "]";
+		return "Employee[" + name + ":JobCount[" + jobs.size() + "]" + "]";
 	}
 }

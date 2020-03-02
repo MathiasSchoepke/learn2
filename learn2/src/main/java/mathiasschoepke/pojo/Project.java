@@ -1,12 +1,14 @@
 package mathiasschoepke.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -21,20 +23,22 @@ public class Project implements Serializable {
 
 	// ATTRIBUTES
 	@Id
-	@Column(name = "projectId")
+	@Column(name = "project_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
-	@Column(name = "seoUrl", nullable = false)
+	@Column(name = "seo_url", nullable = false)
 	private String seoUrl;
 
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "teamSize", nullable = false)
+	@Column(name = "team_size", nullable = false)
 	private int teamSize;
 
 	// ASSOCIATION
+	@OneToMany(mappedBy = "project")
+	private List<Job> jobs;
 
 	// METHODS
 	public Project() {

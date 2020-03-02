@@ -1,12 +1,14 @@
 package mathiasschoepke.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -21,14 +23,16 @@ public class Role implements Serializable {
 
 	// ATTRIBUTES
 	@Id
-	@Column(name = "roleId")
+	@Column(name = "role_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
 
 	// ASSOCIATION
+	@OneToMany(mappedBy = "role")
+	private List<Job> roles;
 
 	// METHODS
 	public Role() {
@@ -38,7 +42,7 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public Role(int id, String name) {
+	public Role(long id, String name) {
 		this.id = id;
 		this.name = name;
 	}

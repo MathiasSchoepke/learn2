@@ -11,38 +11,38 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "employeeRating")
+@Table(name = "requirement")
 @Getter
 @Setter
-public class EmployeeRating implements Serializable {
+public class Requirement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// ATTRIBUTES
 	@Id
-	@Column(name = "employeeId")
-	private int employeeId;
+	@Column(name = "project_id")
+	private long projectId;
 
 	@Id
-	@Column(name = "skillId")
-	private int skillId;
+	@Column(name = "skill_id")
+	private long skillId;
 
 	@Column(name = "rating")
-	private int rating;
+	private long rating;
 
 	// ASSOCIATION
 
 	// METHODS
-	public EmployeeRating() {
+	public Requirement() {
 	}
 
-	public EmployeeRating(int employeeId, int skillId, int rating) {
-		this.employeeId = employeeId;
+	public Requirement(long projectId, long skillId, long rating) {
+		this.projectId = projectId;
 		this.skillId = skillId;
 		this.rating = rating;
 	}
 
 	@Override
 	public String toString() {
-		return "er[" + skillId + ":" + rating + "]";
+		return "pr[" + skillId + ":" + rating + "]";
 	}
 }
