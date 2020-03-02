@@ -3,8 +3,12 @@ package mathiasschoepke.pojo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -18,16 +22,21 @@ public class Requirement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// ATTRIBUTES
-	@Id
-	@Column(name = "project_id")
-	private long projectId;
+	@EmbeddedId
+	RequirementKey id;
 
-	@Id
-	@Column(name = "skill_id")
-	private long skillId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("project_id")
+	@JoinColumn(name = "project_id")
+	Project project;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("skill_id")
+	@JoinColumn(name = "skill_id")
+	Skill skill;
 
 	@Column(name = "rating")
-	private long rating;
+	private int rating;
 
 	// ASSOCIATION
 
@@ -35,14 +44,13 @@ public class Requirement implements Serializable {
 	public Requirement() {
 	}
 
-	public Requirement(long projectId, long skillId, long rating) {
-		this.projectId = projectId;
-		this.skillId = skillId;
+	public Requirement(Project project, Skill skill, int rating) {
+		id = new RequirementKey(project.getId(), skill.getId());
 		this.rating = rating;
 	}
 
-	@Override
-	public String toString() {
-		return "pr[" + skillId + ":" + rating + "]";
-	}
+	// @Override
+	// public String toString() {
+	// return "pr[" + skillId + ":" + rating + "]";
+	// }
 }

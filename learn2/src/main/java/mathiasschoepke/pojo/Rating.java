@@ -3,8 +3,12 @@ package mathiasschoepke.pojo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -18,16 +22,21 @@ public class Rating implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// ATTRIBUTES
-	@Id
-	@Column(name = "employee_id")
-	private long employeeId;
+	@EmbeddedId
+	RatingKey id;
 
-	@Id
-	@Column(name = "skill_id")
-	private long skillId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("employee_id")
+	@JoinColumn(name = "employee_id")
+	Employee employee;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("skill_id")
+	@JoinColumn(name = "skill_id")
+	Skill skill;
 
 	@Column(name = "rating")
-	private long rating;
+	private int rating;
 
 	// ASSOCIATION
 
@@ -35,14 +44,13 @@ public class Rating implements Serializable {
 	public Rating() {
 	}
 
-	public Rating(long employeeId, long skillId, long rating) {
-		this.employeeId = employeeId;
-		this.skillId = skillId;
+	public Rating(Employee employee, Skill skill, int rating) {
+		id = new RatingKey(employee.getId(), skill.getId());
 		this.rating = rating;
 	}
 
 	@Override
 	public String toString() {
-		return "er[" + skillId + ":" + rating + "]";
+		return "Rating[" + employee.getName() + ":" + skill.getName() + ":" + rating + "]";
 	}
 }

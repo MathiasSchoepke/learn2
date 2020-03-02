@@ -37,7 +37,7 @@ public class Project implements Serializable {
 	private int teamSize;
 
 	// ASSOCIATION
-	@OneToMany(mappedBy = "project")
+	@OneToMany(targetEntity = Job.class, mappedBy = "project")
 	private List<Job> jobs;
 
 	// METHODS
@@ -59,6 +59,6 @@ public class Project implements Serializable {
 
 	@Override
 	public String toString() {
-		return "project[" + id + ":" + name + ":" + teamSize + "]";
+		return "Project:" + name;
 	}
 }

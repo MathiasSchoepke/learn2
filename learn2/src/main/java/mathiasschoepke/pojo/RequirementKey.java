@@ -11,28 +11,28 @@ import lombok.Setter;
 @Embeddable
 @Getter
 @Setter
-public class JobKey implements Serializable {
-
-	@Column(name = "employee_id")
-	Long employeeId;
+public class RequirementKey implements Serializable {
 
 	@Column(name = "project_id")
 	Long projectId;
 
-	public JobKey() {
+	@Column(name = "skill_id")
+	Long skillId;
+
+	public RequirementKey() {
 	}
 
-	public JobKey(Long employeeId, Long projectId) {
-		this.employeeId = employeeId;
-		this.projectId = projectId;
+	public RequirementKey(long employeeId, long skillId) {
+		this.projectId = employeeId;
+		this.skillId = skillId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
 		result = prime * result + ((projectId == null) ? 0 : projectId.hashCode());
+		result = prime * result + ((skillId == null) ? 0 : skillId.hashCode());
 		return result;
 	}
 
@@ -44,16 +44,16 @@ public class JobKey implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		JobKey other = (JobKey) obj;
-		if (employeeId == null) {
-			if (other.employeeId != null)
-				return false;
-		} else if (!employeeId.equals(other.employeeId))
-			return false;
+		RequirementKey other = (RequirementKey) obj;
 		if (projectId == null) {
 			if (other.projectId != null)
 				return false;
 		} else if (!projectId.equals(other.projectId))
+			return false;
+		if (skillId == null) {
+			if (other.skillId != null)
+				return false;
+		} else if (!skillId.equals(other.skillId))
 			return false;
 		return true;
 	}

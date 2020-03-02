@@ -2,6 +2,7 @@ package mathiasschoepke.pojo;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -13,12 +14,12 @@ public class Job {
 	@EmbeddedId
 	JobKey id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("employee_id")
 	@JoinColumn(name = "employee_id")
 	Employee employee;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("project_id")
 	@JoinColumn(name = "project_id")
 	Project project;
@@ -27,16 +28,17 @@ public class Job {
 	// private long roleId;
 
 	// ASSOCIATION
-	@ManyToOne()
-	@JoinColumn(name = "role_id", insertable = false)
+	// , insertable = false
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "role_id")
 	Role role;
 
 	// METHODS
 	public Job() {
 	}
 
-	public Job(long employeeId, long projectId, Role role) {
-		id = new JobKey(employeeId,projectId);
+	public Job(Employee employee, Project project, Role role) {
+		id = new JobKey(employee.getId(), project.getId());
 		this.role = role;
 	}
 

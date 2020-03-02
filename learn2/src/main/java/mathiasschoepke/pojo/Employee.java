@@ -34,8 +34,11 @@ public class Employee implements Serializable {
 	private String name;
 
 	// ASSOCIATION
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(targetEntity = Job.class, mappedBy = "employee")
 	private List<Job> jobs;
+
+	@OneToMany(targetEntity = Rating.class, mappedBy = "employee")
+	private List<Rating> ratings;
 
 	// @OneToMany(mappedBy = "employee")
 	// private List<EmployeeHasProject> projects;
@@ -60,6 +63,6 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Employee[" + name + ":JobCount[" + jobs.size() + "]" + "]";
+		return "Employee:" + name;
 	}
 }
