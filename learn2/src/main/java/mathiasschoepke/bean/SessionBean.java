@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Named
 @SessionScoped
@@ -20,6 +21,7 @@ public class SessionBean implements Serializable {
 
 	EntityManagerFactory emf;
 	@Getter
+	@Setter
 	EntityManager em;
 
 	@Getter

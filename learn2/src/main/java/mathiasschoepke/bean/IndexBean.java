@@ -189,34 +189,23 @@ public class IndexBean implements Serializable {
 		return emp;
 	}
 	public Object updateEmployee(long id, String name) {
-		Employee emp = (Employee) readEmployee(id);
-		System.out.println(emp);
+		System.out.println(id + ":" + name + ":" + convertNameToUrl(name));
+		QEmployee employee = QEmployee.employee;
 
-		sb.em.getTransaction().begin();
-		emp.setName(name);
-		emp.setSeoUrl(convertNameToUrl(name));
-		sb.em.getTransaction().commit();
-
-		// sb.em.getTransaction().begin();
-		// QEmployee employee = QEmployee.employee;
-		// sb.getQueryFactory().update(employee).where(employee.id.eq(id)).set(employee.name,
-		// name)
-		// .set(employee.seoUrl, convertNameToUrl(name)).execute();
-		// System.out.println("updateEmployee:" + id);
-		// sb.em.getTransaction().commit();
+		sb.getEm().getTransaction().begin();
+		sb.getQueryFactory().update(employee).where(employee.id.eq(id)).set(employee.name, name)
+				.set(employee.seoUrl, convertNameToUrl(name)).execute();
+		System.out.println("updateEmployee:" + id);
+		sb.getEm().getTransaction().commit();
 		return null;
 	}
 	public Object deleteEmployee(long id) {
-		System.out.println("pre: deleteEmployee:" + id);
-		// sb.em.getTransaction().begin();
-		// sb.em.remove(readEmployee(id));
-		// sb.em.getTransaction().commit();
-
-		sb.em.getTransaction().begin();
 		QEmployee employee = QEmployee.employee;
+
+		sb.getEm().getTransaction().begin();
 		sb.getQueryFactory().delete(employee).where(employee.id.eq(id)).execute();
 		System.out.println("deleteEmployee:" + id);
-		sb.em.getTransaction().commit();
+		sb.getEm().getTransaction().commit();
 		return null;
 	}
 
