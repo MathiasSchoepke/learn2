@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
@@ -17,8 +13,41 @@
 		<ui:define name="content">
 
 			<h2>Employee</h2>
-			#{employeeBean.urlId}
-			<p:commandButton action="#{employeeBean.printUrlId()}" />
+			<p:panelGrid columns="2">
+				<h:outputText value="Name" />
+				<h:outputText value="#{employeeBean.emp.name}" />
+			</p:panelGrid>
+
+			<p:dataTable var="rating" editable="true" value="#{employeeBean.emp.ratings}">
+				<p:column headerText="Skill" sortBy="#{rating.skill.name}">
+					<h:outputText value="#{rating.skill.name}" />
+				</p:column>
+				<p:column headerText="Rating" sortBy="#{rating.rating}">
+					<!-- 					<h:outputText value="#{rating.rating}" /> -->
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{rating.rating}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{rating.rating}" style="width:100%" label="Rating" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:35px">
+					<p:rowEditor title="Edit" />
+				</p:column>
+			</p:dataTable>
+
+			<p:dataTable var="job" editable="true" value="#{employeeBean.emp.jobs}">
+				<p:column headerText="Project" sortBy="#{job.project.name}">
+					<h:link value="#{job.project.name}" outcome="project">
+						<f:param name="id" value="#{job.project.seoUrl}#{job.project.id}" />
+					</h:link>
+				</p:column>
+				<p:column headerText="Role" sortBy="#{job.role.name}">
+					<h:outputText value="#{job.role.name}" />
+				</p:column>
+			</p:dataTable>
 
 		</ui:define>
 	</ui:composition>

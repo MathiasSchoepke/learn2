@@ -17,7 +17,43 @@
 		<ui:define name="content">
 
 			<h2>Project</h2>
-			#{projectBean.urlId}
+			<p:panelGrid columns="2">
+				<h:outputText value="Name" />
+				<h:outputText value="#{projectBean.project.name}" />
+				<h:outputText value="Team Size" />
+				<h:outputText value="#{projectBean.project.teamSize}" />
+			</p:panelGrid>
+
+			<p:dataTable var="requirement" editable="true" value="#{projectBean.project.requirements}">
+				<p:column headerText="Skill">
+					<h:outputText value="#{requirement.skill.name}" />
+				</p:column>
+				<p:column headerText="Rating">
+					<!-- 					<h:outputText value="#{rating.rating}" /> -->
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{requirement.rating}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{requirement.rating}" style="width:100%" label="Rating" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:35px">
+					<p:rowEditor title="Edit" />
+				</p:column>
+			</p:dataTable>
+
+			<p:dataTable var="job" editable="true" value="#{projectBean.project.jobs}">
+				<p:column headerText="Employee">
+					<h:link value="#{job.employee.name}" outcome="employee">
+						<f:param name="id" value="#{job.employee.seoUrl}#{job.employee.id}" />
+					</h:link>
+				</p:column>
+				<p:column headerText="Role">
+					<h:outputText value="#{job.role.name}" />
+				</p:column>
+			</p:dataTable>
 
 		</ui:define>
 	</ui:composition>

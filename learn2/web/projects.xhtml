@@ -17,6 +17,9 @@
 		<ui:define name="content">
 
 			<h2>Projects</h2>
+			<p:linkButton value="Add Project" outcome="project" >
+				<f:param name="id" value="new" />
+			</p:linkButton>
 			<p:dataTable id="questionTable" var="entry" value="#{projectsBean.projects}">
 				<p:column headerText="Name">
 					<h:link value="#{entry.name}" outcome="project">

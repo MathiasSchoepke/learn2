@@ -40,6 +40,9 @@ public class Project implements Serializable {
 	@OneToMany(targetEntity = Job.class, mappedBy = "project")
 	private List<Job> jobs;
 
+	@OneToMany(targetEntity = Requirement.class, mappedBy = "project")
+	private List<Requirement> requirements;
+
 	// METHODS
 	public Project() {
 	}
