@@ -109,16 +109,8 @@ public class IndexBean implements Serializable {
 		QSkill skill = QSkill.skill;
 		List<Skill> ski = sb.getQueryFactory().selectFrom(skill).fetch();
 
-		sb.persist(new Requirement(pro.get(0), ski.get(0), 4));
-		//
-		// // EmployeeRatings
-		// sb.persist(new ProjectRequirement(1, 1, 3));
-		// sb.persist(new ProjectRequirement(1, 2, 2));
-		// sb.persist(new ProjectRequirement(1, 3, 2));
-		//
-		// sb.persist(new ProjectRequirement(2, 1, 2));
-		// sb.persist(new ProjectRequirement(2, 2, 4));
-		// sb.persist(new ProjectRequirement(2, 3, 1));
+		// sb.persist(new Requirement(pro.get(0), ski.get(0), 3));
+
 	}
 	public void initFill() {
 		System.out.println("--- fill! ---");
@@ -166,5 +158,25 @@ public class IndexBean implements Serializable {
 		sb.persist(new Rating(emp.get(2), ski.get(0), 3));
 		sb.persist(new Rating(emp.get(2), ski.get(1), 4));
 		sb.persist(new Rating(emp.get(2), ski.get(2), 4));
+
+		sb.persist(new Requirement(pro.get(0), ski.get(0), 3));
+		sb.persist(new Requirement(pro.get(0), ski.get(1), 2));
+		sb.persist(new Requirement(pro.get(0), ski.get(2), 2));
+		sb.persist(new Requirement(pro.get(1), ski.get(0), 2));
+		sb.persist(new Requirement(pro.get(1), ski.get(1), 4));
+		sb.persist(new Requirement(pro.get(1), ski.get(2), 1));
+	}
+
+	public Object create(Object obj) {
+		return null;
+	}
+	public Object read(Object obj) {
+		return null;
+	}
+	public Object update(Object obj) {
+		return null;
+	}
+	public Object delete(Object obj) {
+		return null;
 	}
 }
