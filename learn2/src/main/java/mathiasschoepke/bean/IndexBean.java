@@ -8,6 +8,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
 import mathiasschoepke.pojo.Employee;
 import mathiasschoepke.pojo.Job;
 import mathiasschoepke.pojo.Project;
@@ -27,6 +29,13 @@ import mathiasschoepke.pojo.Skill;
 @ViewScoped
 public class IndexBean implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	@Getter
+	@Setter
+	private String empName;
+	@Setter
+	@Getter
+	private String empId;
 
 	@Inject
 	SessionBean sb;
@@ -167,16 +176,55 @@ public class IndexBean implements Serializable {
 		sb.persist(new Requirement(pro.get(1), ski.get(2), 1));
 	}
 
-	public Object create(Object obj) {
+	public Object createEmployee(String name) {
+		Employee new_employee = new Employee(convertNameToUrl(name), name);
+		sb.persist(new_employee);
+		System.out.println("createEmployee:" + new_employee);
+		return new_employee;
+	}
+	public Object readEmployee(long id) {
+		QEmployee employee = QEmployee.employee;
+		Employee emp = sb.getQueryFactory().selectFrom(employee).where(employee.id.eq(id)).fetchOne();
+		System.out.println("readEmployee: " + emp);
+		return emp;
+	}
+	public Object updateEmployee(long id, String name) {
+		Employee emp = (Employee) readEmployee(id);
+		System.out.println(emp);
+
+		sb.em.getTransaction().begin();
+		emp.setName(name);
+		emp.setSeoUrl(convertNameToUrl(name));
+		sb.em.getTransaction().commit();
+
+		// sb.em.getTransaction().begin();
+		// QEmployee employee = QEmployee.employee;
+		// sb.getQueryFactory().update(employee).where(employee.id.eq(id)).set(employee.name,
+		// name)
+		// .set(employee.seoUrl, convertNameToUrl(name)).execute();
+		// System.out.println("updateEmployee:" + id);
+		// sb.em.getTransaction().commit();
 		return null;
 	}
-	public Object read(Object obj) {
+	public Object deleteEmployee(long id) {
+		System.out.println("pre: deleteEmployee:" + id);
+		// sb.em.getTransaction().begin();
+		// sb.em.remove(readEmployee(id));
+		// sb.em.getTransaction().commit();
+
+		sb.em.getTransaction().begin();
+		QEmployee employee = QEmployee.employee;
+		sb.getQueryFactory().delete(employee).where(employee.id.eq(id)).execute();
+		System.out.println("deleteEmployee:" + id);
+		sb.em.getTransaction().commit();
 		return null;
 	}
-	public Object update(Object obj) {
-		return null;
-	}
-	public Object delete(Object obj) {
-		return null;
+
+	private String convertNameToUrl(String name) {
+		String url = name.trim().toLowerCase().replaceAll("[^a-z0-9_\\s-]", "");
+		url = url.replaceAll("[\\s-]+", " ");
+		url = url.replaceAll("[\\s]", "-");
+		url += "-";
+		return url;
 	}
 }

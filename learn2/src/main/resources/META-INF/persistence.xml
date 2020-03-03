@@ -17,7 +17,7 @@
 			<!-- update create -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             
-            <property name="hibernate.connection.autocommit" value="true" />
+            <property name="hibernate.connection.autocommit" value="false" />
             
             <property name="tomee.jpa.factory.lazy" value="true" />
         </properties>

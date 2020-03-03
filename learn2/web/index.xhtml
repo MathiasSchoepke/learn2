@@ -25,6 +25,19 @@
 			<p:separator />
 			<p:commandButton value="fill" action="#{indexBean.fill()}" />
 			<p:commandButton value="initFill" action="#{indexBean.initFill()}" />
+			<p:separator />
+			<h:form>
+				<span class="ui-float-label">
+					<p:inputText id="emp-name" value="#{indexBean.empName}" />
+				</span>
+				<span class="ui-float-label"> 
+					<p:inputText id="emp-id" value="#{indexBean.empId}" />
+				</span>
+				<p:commandButton value="create" action="#{indexBean.createEmployee(indexBean.empName)}" />
+				<p:commandButton value="read" action="#{indexBean.readEmployee(indexBean.empId)}" />
+				<p:commandButton value="update" action="#{indexBean.updateEmployee(indexBean.empId,indexBean.empName)}" />
+				<p:commandButton value="delete" action="#{indexBean.deleteEmployee(indexBean.empId)}" />
+			</h:form>
 
 		</ui:define>
 	</ui:composition>
