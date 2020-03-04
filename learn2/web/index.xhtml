@@ -12,33 +12,33 @@
 	<ui:composition template="/layouts/commenLayout.xhtml">
 		<ui:define name="content">
 
-			<h2>index</h2>
-			<p:commandButton value="employee" action="#{indexBean.show('employee')}" />
-			<p:commandButton value="project" action="#{indexBean.show('project')}" />
-			<p:commandButton value="skill" action="#{indexBean.show('skill')}" />
-			<p:commandButton value="role" action="#{indexBean.show('role')}" />
-			<p:commandButton value="rating" action="#{indexBean.show('rating')}" />
-			<p:commandButton value="requirement" action="#{indexBean.show('requirement')}" />
-			<p:commandButton value="job" action="#{indexBean.show('job')}" />
-			<p:separator />
-			<p:commandButton value="show2" action="#{indexBean.show2()}" />
-			<p:separator />
-			<p:commandButton value="fill" action="#{indexBean.fill()}" />
-			<p:commandButton value="initFill" action="#{indexBean.initFill()}" />
-			<p:separator />
-			<h2>employee</h2>
-			<p:commandButton value="show all" action="#{indexBean.show('employee')}" />
 			<h:form>
-				<span class="ui-float-label">
-					<p:inputText id="emp-name" value="#{indexBean.empName}" />
-				</span>
-				<span class="ui-float-label"> 
-					<p:inputText id="emp-id" value="#{indexBean.empId}" />
-				</span>
-				<p:commandButton value="create" action="#{indexBean.createEmployee(indexBean.empName)}" />
-				<p:commandButton value="read" action="#{indexBean.readEmployee(indexBean.empId)}" />
-				<p:commandButton value="update" action="#{indexBean.updateEmployee(indexBean.empId,indexBean.empName)}" />
-				<p:commandButton value="delete" action="#{indexBean.deleteEmployee(indexBean.empId)}" />
+				<h2>index</h2>
+				<p:commandButton value="employee" action="#{indexBean.show('employee')}" />
+				<p:commandButton value="project" action="#{indexBean.show('project')}" />
+				<p:commandButton value="skill" action="#{indexBean.show('skill')}" />
+				<p:commandButton value="role" action="#{indexBean.show('role')}" />
+				<p:commandButton value="rating" action="#{indexBean.show('rating')}" />
+				<p:commandButton value="requirement" action="#{indexBean.show('requirement')}" />
+				<p:commandButton value="job" action="#{indexBean.show('job')}" />
+				<p:separator />
+				<p:commandButton value="show2" action="#{indexBean.show2()}" />
+				<p:separator />
+				<p:commandButton value="fill" action="#{indexBean.fill()}" />
+				<p:commandButton value="initFill" action="#{indexBean.initFill()}" />
+				<p:separator />
+				<h2>employee</h2>
+				<p:commandButton value="show all" action="#{indexBean.show('employee')}" />
+				<h:form>
+					<span class="ui-float-label"> <p:inputText id="emp-name" value="#{indexBean.empName}" />
+					</span>
+					<span class="ui-float-label"> <p:inputText id="emp-id" value="#{indexBean.empId}" />
+					</span>
+					<p:commandButton value="create" action="#{indexBean.createEmployee(indexBean.empName)}" />
+					<p:commandButton value="read" action="#{indexBean.readEmployee(indexBean.empId)}" />
+					<p:commandButton value="update" action="#{indexBean.updateEmployee(indexBean.empId,indexBean.empName)}" />
+					<p:commandButton value="delete" action="#{indexBean.deleteEmployee(indexBean.empId)}" />
+				</h:form>
 			</h:form>
 
 		</ui:define>
