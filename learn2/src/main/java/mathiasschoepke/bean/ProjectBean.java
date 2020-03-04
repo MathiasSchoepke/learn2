@@ -31,6 +31,7 @@ public class ProjectBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("ProjectBean Init()");
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		url = params.get("id");
 		String[] split = url.split("-");

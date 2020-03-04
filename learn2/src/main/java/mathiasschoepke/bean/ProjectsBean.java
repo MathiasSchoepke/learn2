@@ -30,6 +30,7 @@ public class ProjectsBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("ProjectsBean Init()");
 		QProject project = QProject.project;
 		projects = sb.getQueryFactory().selectFrom(project).fetch();
 	}

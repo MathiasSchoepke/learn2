@@ -29,6 +29,7 @@ public class SessionBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("SessionBean Init()");
 		emf = Persistence.createEntityManagerFactory("peri");
 		em = emf.createEntityManager();
 		queryFactory = new JPAQueryFactory(em);

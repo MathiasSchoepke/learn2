@@ -42,6 +42,7 @@ public class IndexBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("IndexBean Init()");
 	}
 
 	public void show(String para) {
