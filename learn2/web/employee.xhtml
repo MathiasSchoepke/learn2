@@ -13,11 +13,37 @@
 		<ui:define name="content">
 
 			<h2>Employee</h2>
-			<p:panelGrid columns="2">
+			<h3>Info</h3>
+			<h:form>
+				<p:commandButton process="@this" value="Edit Employee" oncomplete="PF('editEmployeeDialog').show();" />
+				<!-- 				<p:commandButton process="@this" value="Delete Employee" oncomplete="PF('addEmployeeDialog').show();" /> -->
+
+
+
+				<!-- 				<p:dialog id="deleteEmployee" header="Frage wirklich Löschen?" widgetVar="entryRemove" modal="true" showEffect="fade" -->
+				<!-- 					hideEffect="fade" resizable="false"> -->
+				<!-- 					<h:form> -->
+				<!-- 						<p:panelGrid columns="2"> -->
+				<!-- 							<h:outputText value="Frage:" /> -->
+				<!-- 							<h:outputText value="#{manageBean.selectedQuestion.question}" /> -->
+
+				<!-- 							<h:outputText value="Antwort:" /> -->
+				<!-- 							<h:outputText value="#{manageBean.selectedQuestion.answer}" /> -->
+				<!-- 							<f:facet name="footer"> -->
+				<!-- 								<p:commandButton process="@form" update=":manage:questionTable" value="Löschen" -->
+				<!-- 									action="#{manageBean.removeQuestion()}" oncomplete="PF('entryRemove').hide();" /> -->
+				<!-- 								<p:commandButton value="Abbrechen" oncomplete="PF('entryRemove').hide();" /> -->
+				<!-- 							</f:facet> -->
+				<!-- 						</p:panelGrid> -->
+				<!-- 					</h:form> -->
+				<!-- 				</p:dialog> -->
+			</h:form>
+			<p:panelGrid id="employeeInfo" columns="2">
 				<h:outputText value="Name" />
 				<h:outputText value="#{employeeBean.emp.name}" />
 			</p:panelGrid>
 
+			<h3>Ratings</h3>
 			<p:dataTable var="rating" editable="true" value="#{employeeBean.emp.ratings}">
 				<p:column headerText="Skill" sortBy="#{rating.skill.name}">
 					<h:outputText value="#{rating.skill.name}" />
@@ -38,6 +64,7 @@
 				</p:column>
 			</p:dataTable>
 
+			<h3>Projects</h3>
 			<p:dataTable var="job" editable="true" value="#{employeeBean.emp.jobs}">
 				<p:column headerText="Project" sortBy="#{job.project.name}">
 					<h:link value="#{job.project.name}" outcome="project">
@@ -48,6 +75,35 @@
 					<h:outputText value="#{job.role.name}" />
 				</p:column>
 			</p:dataTable>
+
+			<script type="text/javascript">
+				function handleRequest(xhr, status, args, dialog) {
+					if (args.validationFailed) {
+						PF(dialog).jq.effect("shake", {
+							times : 1
+						}, 25);
+					} else {
+						PF(dialog).hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+
+			<p:dialog id="editEmployee" header="Edit Employee" widgetVar="editEmployeeDialog" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false">
+				<h:form>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel value="Name" />
+						<p:inputText id="editName" value="#{employeeBean.name}" required="true" />
+
+						<f:facet name="footer">
+							<p:commandButton process="@form" value="Edit" update=":employeeInfo" action="#{employeeBean.updateEmployee()}"
+								oncomplete="handleRequest(xhr, status, args, 'editEmployeeDialog')" />
+							<p:commandButton value="Cancel" oncomplete="PF('editEmployeeDialog').hide();" />
+						</f:facet>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
 
 		</ui:define>
 	</ui:composition>
