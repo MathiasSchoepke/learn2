@@ -19,6 +19,10 @@ public class EmployeesBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Getter
+	@Setter
+	private String name;
+
+	@Getter
 	private List<Employee> employees;
 	
 	@Getter
@@ -30,7 +34,29 @@ public class EmployeesBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("EmployeesBean Init()");
 		QEmployee employee = QEmployee.employee;
-		employees = sb.getQueryFactory().selectFrom(employee).fetch();
+		employees = loadAllEmployees();
+	}
+
+	private List<Employee> loadAllEmployees() {
+		QEmployee employee = QEmployee.employee;
+		return sb.getQueryFactory().selectFrom(employee).fetch();
+	}
+
+	public Object createEmployee(String name) {
+		Employee new_employee = new Employee(convertNameToUrl(name), name);
+		sb.persist(new_employee);
+		System.out.println("createEmployee:" + new_employee);
+		employees = loadAllEmployees();
+		return new_employee;
+	}
+
+	private String convertNameToUrl(String name) {
+		String url = name.trim().toLowerCase().replaceAll("[^a-z0-9_\\s-]", "");
+		url = url.replaceAll("[\\s-]+", " ");
+		url = url.replaceAll("[\\s]", "-");
+		url += "-";
+		return url;
 	}
 }
